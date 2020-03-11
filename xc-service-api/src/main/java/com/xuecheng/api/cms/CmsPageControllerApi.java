@@ -1,6 +1,7 @@
 package com.xuecheng.api.cms;
 
 import com.xuecheng.framework.domain.cms.request.QueryPageReq;
+import com.xuecheng.framework.model.response.Response;
 
 /**
  * 　　* @description: TODO
@@ -12,5 +13,5 @@ import com.xuecheng.framework.domain.cms.request.QueryPageReq;
  *
  */
 public interface CmsPageControllerApi {
-    public void findList(int page, int size, QueryPageReq req) ;
+    public Response<?> findList(Integer page, Integer size, QueryPageReq req) ;
 }

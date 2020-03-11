@@ -5,13 +5,8 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class QueryResponseResult extends ResponseResult {
+public class QueryResponseResult  {
 
     QueryResult queryResult;
-
-    public QueryResponseResult(ResultCode resultCode,QueryResult queryResult){
-        super(resultCode);
-       this.queryResult = queryResult;
-    }
 
 }

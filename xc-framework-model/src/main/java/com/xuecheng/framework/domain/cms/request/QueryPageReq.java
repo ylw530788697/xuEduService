@@ -24,4 +24,13 @@ public class QueryPageReq implements Serializable {
 
     @ApiModelProperty(value = "页面id")
     private String pageId;
+
+    @ApiModelProperty(value = "页面名称")
+     private String pageName;
+
+    @ApiModelProperty(value = "别名")
+    private String pageAliase;
+
+    @ApiModelProperty(value = "模板id")
+     private String templateId;
 }
