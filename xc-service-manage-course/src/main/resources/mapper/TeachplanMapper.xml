@@ -3,7 +3,7 @@
 <mapper namespace="com.xuecheng.manage_course.dao.TeachplanDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xuecheng.manage_course.model.TeachplanModel">
+    <resultMap id="BaseResultMap" type="com.xuecheng.framework.domain.course.TeachplanModel">
         <id column="id" property="id" />
         <result column="pname" property="pname" />
         <result column="parentid" property="parentid" />

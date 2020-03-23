@@ -1,4 +1,4 @@
-package com.xuecheng.manage_course.model;
+package com.xuecheng.framework.domain.course;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;

@@ -3,7 +3,7 @@
 <mapper namespace="com.xuecheng.manage_course.dao.TeachplanMediaDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xuecheng.manage_course.model.TeachplanMediaModel">
+    <resultMap id="BaseResultMap" type="com.xuecheng.framework.domain.course.TeachplanMediaModel">
         <id column="teachplan_id" property="teachplanId" />
         <result column="media_id" property="mediaId" />
         <result column="media_fileoriginalname" property="mediaFileoriginalname" />

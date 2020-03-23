@@ -1,6 +1,6 @@
 package com.xuecheng.manage_course.dao;
 
-import com.xuecheng.manage_course.model.CourseMarketModel;
+import com.xuecheng.framework.domain.course.CourseMarketModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

@@ -1,6 +1,6 @@
 package com.xuecheng.manage_course.service.impl;
 
-import com.xuecheng.manage_course.model.CourseOffModel;
+import com.xuecheng.framework.domain.course.CourseOffModel;
 import com.xuecheng.manage_course.dao.CourseOffDao;
 import com.xuecheng.manage_course.service.ICourseOffProvider;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

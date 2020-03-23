@@ -1,6 +1,8 @@
 package com.xuecheng.manage_course.controller;
 
 
+import com.xuecheng.api.course.CategoryControllerApi;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/categoryModel")
-public class CategoryController {
+public class CategoryController implements CategoryControllerApi {
+    @Override
+    @GetMapping("/index")
+    public String demo(){
+        return "ceshjio";
+    }
 
 }
 

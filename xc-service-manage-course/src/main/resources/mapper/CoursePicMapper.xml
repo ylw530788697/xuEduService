@@ -3,7 +3,7 @@
 <mapper namespace="com.xuecheng.manage_course.dao.CoursePicDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xuecheng.manage_course.model.CoursePicModel">
+    <resultMap id="BaseResultMap" type="com.xuecheng.framework.domain.course.CoursePicModel">
         <id column="courseid" property="courseid" />
         <result column="pic" property="pic" />
     </resultMap>

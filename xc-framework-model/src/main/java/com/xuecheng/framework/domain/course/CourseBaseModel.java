@@ -1,9 +1,8 @@
-package com.xuecheng.manage_course.model;
+package com.xuecheng.framework.domain.course;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -23,13 +22,12 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("course_pre")
-@ApiModel(value="CoursePreModel对象", description="")
-public class CoursePreModel extends Model<CoursePreModel> {
+@TableName("course_base")
+@ApiModel(value="CourseBaseModel对象", description="")
+public class CourseBaseModel extends Model<CourseBaseModel> {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "主键")
     @TableId(value = "id", type = IdType.UUID)
     private String id;
 
@@ -39,11 +37,8 @@ public class CoursePreModel extends Model<CoursePreModel> {
     @ApiModelProperty(value = "适用人群")
     private String users;
 
-    @ApiModelProperty(value = "大分类")
+    @ApiModelProperty(value = "课程大分类")
     private String mt;
-
-    @ApiModelProperty(value = "小分类")
-    private String st;
 
     @ApiModelProperty(value = "课程等级")
     private String grade;
@@ -51,38 +46,23 @@ public class CoursePreModel extends Model<CoursePreModel> {
     @ApiModelProperty(value = "学习模式")
     private String studymodel;
 
+    @ApiModelProperty(value = "授课模式")
+    private String teachmode;
+
     @ApiModelProperty(value = "课程介绍")
     private String description;
+
+    @ApiModelProperty(value = "课程小分类")
+    private String st;
 
     @ApiModelProperty(value = "课程状态")
     private String status;
 
-    @ApiModelProperty(value = "时间戳")
-    private LocalDateTime timestamp;
+    @ApiModelProperty(value = "教育机构")
+    private String companyId;
 
-    @ApiModelProperty(value = "收费规则，对应数据字典")
-    private String charge;
-
-    @ApiModelProperty(value = "有效性，对应数据字典")
-    private String valid;
-
-    @ApiModelProperty(value = "咨询qq")
-    private String qq;
-
-    @ApiModelProperty(value = "价格")
-    private Float price;
-
-    @ApiModelProperty(value = "原价格")
-    private Float priceOld;
-
-    @ApiModelProperty(value = "过期时间")
-    private LocalDateTime expires;
-
-    @ApiModelProperty(value = "课程图片")
-    private String pic;
-
-    @ApiModelProperty(value = "课程计划")
-    private String teachplan;
+    @ApiModelProperty(value = "创建用户")
+    private String userId;
 
 
     @Override

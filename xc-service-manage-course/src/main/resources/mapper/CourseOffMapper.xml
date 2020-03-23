@@ -3,7 +3,7 @@
 <mapper namespace="com.xuecheng.manage_course.dao.CourseOffDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xuecheng.manage_course.model.CourseOffModel">
+    <resultMap id="BaseResultMap" type="com.xuecheng.framework.domain.course.CourseOffModel">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="users" property="users" />

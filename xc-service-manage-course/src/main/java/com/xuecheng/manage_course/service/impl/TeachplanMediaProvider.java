@@ -1,6 +1,6 @@
 package com.xuecheng.manage_course.service.impl;
 
-import com.xuecheng.manage_course.model.TeachplanMediaModel;
+import com.xuecheng.framework.domain.course.TeachplanMediaModel;
 import com.xuecheng.manage_course.dao.TeachplanMediaDao;
 import com.xuecheng.manage_course.service.ITeachplanMediaProvider;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

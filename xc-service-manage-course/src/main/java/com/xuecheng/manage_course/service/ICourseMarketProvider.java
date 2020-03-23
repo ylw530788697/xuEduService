@@ -1,6 +1,6 @@
 package com.xuecheng.manage_course.service;
 
-import com.xuecheng.manage_course.model.CourseMarketModel;
+import com.xuecheng.framework.domain.course.CourseMarketModel;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

@@ -1,6 +1,6 @@
 package com.xuecheng.manage_course.dao;
 
-import com.xuecheng.manage_course.model.TeachplanMediaModel;
+import com.xuecheng.framework.domain.course.TeachplanMediaModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

@@ -3,7 +3,7 @@
 <mapper namespace="com.xuecheng.manage_course.dao.CourseMarketDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.xuecheng.manage_course.model.CourseMarketModel">
+    <resultMap id="BaseResultMap" type="com.xuecheng.framework.domain.course.CourseMarketModel">
         <id column="id" property="id" />
         <result column="charge" property="charge" />
         <result column="valid" property="valid" />

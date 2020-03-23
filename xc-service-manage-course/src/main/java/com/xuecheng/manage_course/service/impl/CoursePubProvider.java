@@ -1,6 +1,6 @@
 package com.xuecheng.manage_course.service.impl;
 
-import com.xuecheng.manage_course.model.CoursePubModel;
+import com.xuecheng.framework.domain.course.CoursePubModel;
 import com.xuecheng.manage_course.dao.CoursePubDao;
 import com.xuecheng.manage_course.service.ICoursePubProvider;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
