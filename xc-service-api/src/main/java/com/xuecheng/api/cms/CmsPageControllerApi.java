@@ -13,5 +13,5 @@ import com.xuecheng.framework.model.response.ResponseData;
  *
  */
 public interface CmsPageControllerApi {
-    public ResponseData<?> findList(Integer page, Integer size, QueryPageReq req) ;
+
 }

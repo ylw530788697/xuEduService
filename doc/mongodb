@@ -1,2 +1,4 @@
 db.createUser({user:"root",pwd:"root",roles:["root"]})
 db.auth("root", "root")
+
+db.auth("evan", "123")

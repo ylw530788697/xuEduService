@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CmsPageController implements CmsPageControllerApi {
     //@Autowired
-    @Override
     @GetMapping("/list/{page}/{size}")
     public ResponseData<?> findList(@PathVariable("page") Integer page, @PathVariable("size")Integer size, QueryPageReq req) {
 
-        return ResponseData.ok("ceshi ");
+        return ResponseData.ok("ceshi");
     }
 }
