@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @version 1.0
  * @date 03/10/2020 17:55
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @EntityScan("com.xuecheng.framework.domain.cms")//扫描实体类
 @ComponentScan(basePackages={"com.xuecheng.api"})//扫描接口
 @ComponentScan(basePackages={"com.xuecheng.manage_cms"})//扫描本项目下的所有类
