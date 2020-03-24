@@ -5,6 +5,7 @@ import com.xuecheng.framework.domain.cms.request.QueryPageReq;
 import com.xuecheng.framework.model.response.ResponseData;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -15,10 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class CmsPageController implements CmsPageControllerApi {
-    //@Autowired
     @GetMapping("/list/{page}/{size}")
     public ResponseData<?> findList(@PathVariable("page") Integer page, @PathVariable("size")Integer size, QueryPageReq req) {
 
         return ResponseData.ok("ceshi");
+    }
+
+    @GetMapping("/demo")
+    public ResponseData<?> findDemo(@RequestParam("name") String name) {
+
+        return ResponseData.ok(name);
     }
 }
