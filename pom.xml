@@ -22,6 +22,7 @@
         <module>xc-service-manage-course</module>
         <module>xc-govern-center</module>
         <module>xc-govern-center-available</module>
+        <module>xc-service-ucenter-auth</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
