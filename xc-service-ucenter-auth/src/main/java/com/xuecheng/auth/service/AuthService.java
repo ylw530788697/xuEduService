@@ -1,17 +1,22 @@
-package com.xuecheng.auth;
+package com.xuecheng.auth.service;
 
+import com.alibaba.fastjson.JSON;
 import com.xuecheng.framework.client.XcServiceList;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.xuecheng.framework.domain.ucenter.ext.AuthToken;
+import com.xuecheng.framework.domain.ucenter.response.AuthCode;
+import com.xuecheng.framework.exception.ExceptionCast;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -21,22 +26,52 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author evanYang
  * @version 1.0
- * @date 03/25/2020 16:08
+ * @date 03/28/2020 13:48
  */
-@SpringBootTest
-@RunWith(SpringRunner.class)
-public class TestClent {
+@Service
+public class AuthService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthService.class);
+    @Value("${auth.tokenValiditySeconds}")
+    int tokenValiditySeconds;
     @Autowired
-    private LoadBalancerClient loadBalancerClient;
-    @Autowired
-    private RestTemplate restTemplate;
+    LoadBalancerClient loadBalancerClient;
 
-    @Test
-    public void testClient(){
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    RestTemplate restTemplate;
+    //用户认证申请令牌，将令牌存储到redis
+    public AuthToken login(String username, String password, String clientId, String clientSecret) {
+        AuthToken authToken = this.applyToken(username, password, clientId, clientSecret);
+        if(authToken == null){
+            ExceptionCast.cast(AuthCode.AUTH_LOGIN_APPLYTOKEN_FAIL);
+        }
+        //用户身份令牌
+        String access_token = authToken.getAccess_token();
+        //存储到redis中的内容
+        String jsonString = JSON.toJSONString(authToken);
+        //将令牌存储到redis
+        boolean result = this.saveToken(access_token, jsonString, tokenValiditySeconds);
+        if (!result) {
+            ExceptionCast.cast(AuthCode.AUTH_LOGIN_TOKEN_SAVEFAIL);
+        }
+        return authToken;
+    }
+
+    private boolean saveToken(String access_token,String content,long ttl){
+        String key = "user_token:" + access_token;
+        stringRedisTemplate.boundValueOps(key).set(content,ttl, TimeUnit.SECONDS);
+        Long expire = stringRedisTemplate.getExpire(key, TimeUnit.SECONDS);
+        return expire>0;
+    }
+
+    public AuthToken applyToken(String username, String password, String clientId, String clientSecret) {
         //从eureka中获取认证服务的地址（因为spring security在认证服务中）
         //从eureka中获取认证服务的一个实例的地址
         ServiceInstance serviceInstance = loadBalancerClient.choose(XcServiceList.XC_SERVICE_UCENTER_AUTH);
@@ -72,7 +107,17 @@ public class TestClent {
 
         //申请令牌信息
         Map bodyMap = exchange.getBody();
-        System.out.println(bodyMap);
+        if(bodyMap == null ||
+                bodyMap.get("access_token") == null ||
+                bodyMap.get("refresh_token") == null ||
+                bodyMap.get("jti") == null){
+            return null;
+        }
+        AuthToken authToken = new AuthToken();
+        authToken.setAccess_token((String) bodyMap.get("jti"));//用户身份令牌
+        authToken.setRefresh_token((String) bodyMap.get("refresh_token"));//刷新令牌
+        authToken.setJwt_token((String) bodyMap.get("access_token"));//jwt令牌
+        return authToken;
     }
 
     //获取httpbasic的串
