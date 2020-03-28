@@ -2,6 +2,7 @@ server:
   port: ${PORT:40400}
   servlet:
     context-path: /auth
+    #/auth
 spring:
   application:
     name: xc-service-ucenter-auth

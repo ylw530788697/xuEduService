@@ -22,16 +22,16 @@ import java.util.Map;
 public class RibbonTest {
     @Autowired
     RestTemplate restTemplate;
-    @Test
-    public void demo(){
-        //LoadBalancerInterceptor
-        //RibbonLoadBalancerClient
-        String serviceId = "xc-service-manage-cms";
-        for (int i=0;i<10;i++){
-            //ribbon客户端从eurekaServer中获取服务列表,根据服务名获取服务列表
-            ResponseEntity<Map> forEntity = restTemplate.getForEntity("http://"+serviceId+"/list/1/2", Map.class);
-            Map body = forEntity.getBody();
-            System.out.println(body);
-        }
-    }
+    //@Test
+    //public void demo(){
+    //    //LoadBalancerInterceptor
+    //    //RibbonLoadBalancerClient
+    //    String serviceId = "xc-service-manage-cms";
+    //    for (int i=0;i<10;i++){
+    //        //ribbon客户端从eurekaServer中获取服务列表,根据服务名获取服务列表
+    //        ResponseEntity<Map> forEntity = restTemplate.getForEntity("http://"+serviceId+"/list/1/2", Map.class);
+    //        Map body = forEntity.getBody();
+    //        System.out.println(body);
+    //    }
+    //}
 }

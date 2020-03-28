@@ -25,16 +25,16 @@ public class FeigonTest {
     @Autowired
     CmsPageClient cmsPageClient;
     
-    @Test
+    //@Test
     public void demo(){
         //LoadBalancerInterceptor
         //RibbonLoadBalancerClient
-        String serviceId = "xc-service-manage-cms";
-        for (int i=0;i<10;i++){
-            //ResponseData<?> list = cmsPageClient.findList(1, 2,new QueryPageReq());
-            ResponseData<?> zhansan = cmsPageClient.findDemo("zhansan");
-            System.out.println(zhansan);
-
-        }
+        //String serviceId = "xc-service-manage-cms";
+        //for (int i=0;i<10;i++){
+        //    //ResponseData<?> list = cmsPageClient.findList(1, 2,new QueryPageReq());
+        //    ResponseData<?> zhansan = cmsPageClient.findDemo("zhansan");
+        //    System.out.println(zhansan);
+        //
+        //}
     }
 }
