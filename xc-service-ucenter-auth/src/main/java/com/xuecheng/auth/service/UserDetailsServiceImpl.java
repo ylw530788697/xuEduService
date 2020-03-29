@@ -1,5 +1,6 @@
 package com.xuecheng.auth.service;
 
+import com.xuecheng.auth.client.UserClient;
 import com.xuecheng.framework.domain.ucenter.XcMenu;
 import com.xuecheng.framework.domain.ucenter.ext.XcUserExt;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +25,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     ClientDetailsService clientDetailsService;
+    @Autowired
+    UserClient userClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,7 +44,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (StringUtils.isEmpty(username)) {
             return null;
         }
-        XcUserExt userext = new XcUserExt();
+        XcUserExt userext =userClient.getUserext(username);
+        //XcUserExt userext = new XcUserExt();
         userext.setUsername("itcast");
         userext.setPassword(new BCryptPasswordEncoder().encode("123"));
         userext.setPermissions(new ArrayList<XcMenu>());
@@ -56,7 +60,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //从数据库获取权限
         List<XcMenu> permissions = userext.getPermissions();
         List<String> user_permission = new ArrayList<>();
-        permissions.forEach(item-> user_permission.add(item.getCode()));
+        if (permissions!=null) {
+            permissions.forEach(item -> user_permission.add(item.getCode()));
+        }
 //        user_permission.add("course_get_baseinfo");
 //        user_permission.add("course_find_pic");
         String user_permission_string  = StringUtils.join(user_permission.toArray(), ",");
